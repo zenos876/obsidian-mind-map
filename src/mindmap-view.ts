@@ -68,7 +68,7 @@ export default class MindmapView extends ItemView {
         this.obsMarkmap = new ObsidianMarkmap(this.vault);
         this.registerActiveLeafUpdate();
         this.listeners = [
-            this.workspace.on('layout-ready', () => this.update()),
+            this.workspace.on('layout-change', () => this.update()),
             this.workspace.on('resize', () => this.update()),
             this.workspace.on('css-change', () => this.update()),
             this.leaf.on('group-change', (group) => this.updateLinkedLeaf(group, this))
@@ -107,7 +107,7 @@ export default class MindmapView extends ItemView {
 
     pinCurrentLeaf() {
         this.isLeafPinned = true;
-        this.pinAction = this.addAction('filled-pin', 'Pin', () => this.unPin(), 20);
+        this.pinAction = this.addAction('filled-pin', 'Pin', () => this.unPin());
         this.pinAction.addClass('is-active');
     }
 
